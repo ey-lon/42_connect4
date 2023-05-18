@@ -6,7 +6,7 @@
 /*   By: abettini <abettini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 10:27:20 by abettini          #+#    #+#             */
-/*   Updated: 2023/05/18 15:06:07 by abettini         ###   ########.fr       */
+/*   Updated: 2023/05/18 15:24:38 by abettini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,9 +86,8 @@ int ft_mlx_start(t_opt *opt, t_mlx *meta)
 	int x;
 
 	y = 0;
-	ft_mlx_init(opt, meta);
+
 	meta->set = -1;
-	//meta->win = mlx_new_window(meta->mlx, meta->width, meta->hight, "connect4");
 	while (y < opt->grid_height)
 	{
 		x = 0;
@@ -99,10 +98,7 @@ int ft_mlx_start(t_opt *opt, t_mlx *meta)
 		}
 		y++;
 	}
-	if (!opt->gamemode)
-		ft_mlx_pve(*opt, meta);
-	else
-		ft_mlx_pvp(*opt, meta);
+	ft_mlx_pve(*opt, meta);
 	return (0);
 }
 
@@ -121,6 +117,7 @@ int	main(int ac, char **av)
 			return (ft_printf("Invalid size\n") * 0 + 2);
 
 		ft_c4_opt_init(&opt, ft_atoi(av[1]), ft_atoi(av[2]));
+		ft_mlx_init(&opt, &meta);
 		ft_mlx_start(&opt, &meta);
 	}
 	else if(!ft_strncmp(av[3], "noob", 5))

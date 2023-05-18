@@ -6,7 +6,7 @@
 /*   By: abettini <abettini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 10:26:51 by abettini          #+#    #+#             */
-/*   Updated: 2023/05/18 15:09:36 by abettini         ###   ########.fr       */
+/*   Updated: 2023/05/18 15:28:42 by abettini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,14 +45,18 @@ int	ft_mouse_win_pvp(int key_code, int x, int y, t_game *game)
 	{
 		if ((x > game->meta->width - 192 + 26 && x < game->meta->width - 26) && (y < game->meta->hight - 143 && y > game->meta->hight - 181))
 		{
-			game->opt->gamemode = 0;
-			ft_terminate(game, 1);
+			game->opt->gamemode = 1;
+			ft_free_mat(game->mat);
+			ft_logclear(&game->meta->log);
+			//mlx_destroy_window(game->meta->mlx, game->meta->win);
 			ft_mlx_start(game->opt, game->meta);
 			return (1);
 		}
 		else if ((x > game->meta->width - 192 + 26 && x < game->meta->width - 26) && (y < game->meta->hight - 98 && y > game->meta->hight - 136))
 		{
-			ft_terminate(game, 1);
+			ft_free_mat(game->mat);
+			ft_logclear(&game->meta->log);
+			//mlx_destroy_window(game->meta->mlx, game->meta->win);
 			ft_mlx_start(game->opt, game->meta);
 			return (1);
 		}
@@ -110,13 +114,17 @@ int	ft_mouse_win_cpu(int key_code, int x, int y, t_game *game)
 		if ((x > game->meta->width - 192 + 26 && x < game->meta->width - 26) && (y < game->meta->hight - 143 && y > game->meta->hight - 181))
 		{
 			game->opt->gamemode = 1;
-			ft_terminate(game, 1);
+			ft_free_mat(game->mat);
+			ft_logclear(&game->meta->log);
+			//mlx_destroy_window(game->meta->mlx, game->meta->win);
 			ft_mlx_start(game->opt, game->meta);
 			return (1);
 		}
 		else if ((x > game->meta->width - 192 + 26 && x < game->meta->width - 26) && (y < game->meta->hight - 98 && y > game->meta->hight - 136))
 		{
-			ft_terminate(game, 1);
+			ft_free_mat(game->mat);
+			ft_logclear(&game->meta->log);
+			//mlx_destroy_window(game->meta->mlx, game->meta->win);
 			ft_mlx_start(game->opt, game->meta);
 			return (1);
 		}
@@ -249,7 +257,7 @@ int	ft_print_top(t_game *game)
 	return (0);
 }
 
-/* int	ft_mlx_pve(t_opt opt, t_mlx *meta)
+int	ft_mlx_pve(t_opt opt, t_mlx *meta)
 {
 	t_game	game;
 	int		cpu_start;
@@ -280,15 +288,15 @@ int	ft_print_top(t_game *game)
 		ft_print_log(&game, meta, meta->log);
 		mlx_mouse_hook(meta->win, ft_mouse_win_pvp, &game);
 	}
-	mlx_hook(meta->win, 17, 0, ft_terminate, &game);
+	mlx_hook(meta->win, 17, 0, ft_x_terminate, &game);
 	mlx_hook(meta->win, 2, 1L << 0, ft_key_hooks, &game);
-	//mlx_loop_hook(game.meta->mlx, ft_print_top, &game);
-	// mlx_loop(meta->mlx);
+	mlx_loop_hook(game.meta->mlx, ft_print_top, &game);
+	mlx_loop(meta->mlx);
 	return (0);
 }
 
 //PVP------------------------------------------------------------------------------
-int	ft_mlx_pvp(t_opt opt, t_mlx *meta)
+/* int	ft_mlx_pvp(t_opt opt, t_mlx *meta)
 {
 	t_game	game;
 
@@ -303,7 +311,7 @@ int	ft_mlx_pvp(t_opt opt, t_mlx *meta)
  */
 
 //PVE------------------------------------------------------------------------------
-int	ft_mlx_pve(t_opt opt, t_mlx *meta)
+/* int	ft_mlx_pve(t_opt opt, t_mlx *meta)
 {
 	t_game	game;
 	int		cpu_start;
@@ -346,7 +354,7 @@ int	ft_mlx_pvp(t_opt opt, t_mlx *meta)
 	mlx_loop_hook(game.meta->mlx, ft_print_top, &game);
 	mlx_loop(meta->mlx);
 	return (0);
-}
+} */
 
 //utils----------------------------------------------------------------------------
 int	ft_mlx_put_char_in_column_n_at_last_pos(t_mlx *meta, char **mat, char c, int n, char pos)
