@@ -6,7 +6,7 @@
 /*   By: abettini <abettini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 10:27:20 by abettini          #+#    #+#             */
-/*   Updated: 2023/05/18 15:24:38 by abettini         ###   ########.fr       */
+/*   Updated: 2023/05/19 10:14:01 by abettini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ static void ft_mlx_init(t_opt *opt, t_mlx *meta)
 
 static void ft_c4_opt_init(t_opt *opt, int x, int y)
 {
-	opt->gamemode = PVP;
+	opt->gamemode = GAMEMODE;
 	opt->max_marks = MAX_MARKS;
 	opt->grid_width = x;
 	opt->grid_height = y;
@@ -98,7 +98,7 @@ int ft_mlx_start(t_opt *opt, t_mlx *meta)
 		}
 		y++;
 	}
-	ft_mlx_pve(*opt, meta);
+	ft_mlx_game(*opt, meta);
 	return (0);
 }
 
@@ -125,7 +125,7 @@ int	main(int ac, char **av)
 		if (ft_arg_check(av[1], C_MIN, C_MAX) || ft_arg_check(av[2], R_MIN, R_MAX))
 			return (ft_printf("Invalid size\n") * 0 + 2);
 		ft_c4_opt_init(&opt, ft_atoi(av[1]), ft_atoi(av[2]));
-		if (!PVP)
+		if (GAMEMODE == PVE)
 			ft_c4_pve(opt);
 		else
 			ft_c4_pvp(opt);

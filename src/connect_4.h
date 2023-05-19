@@ -6,7 +6,7 @@
 /*   By: abettini <abettini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 10:27:14 by abettini          #+#    #+#             */
-/*   Updated: 2023/05/18 14:57:04 by abettini         ###   ########.fr       */
+/*   Updated: 2023/05/19 10:13:42 by abettini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,12 @@
 # define P2 '2'
 # define CPU '2'
 
+# define PVP 1
+# define PVE 0
+
 //PVP on/off----------------------------
-# ifndef PVP
-#  define PVP 0
+# ifndef GAMEMODE
+#  define GAMEMODE PVE
 # endif
 
 //LIMITS--------------------------------
@@ -113,10 +116,10 @@ void	ft_c4_print_mat(char **mat, t_opt *opt);
 int 	ft_mlx_start(t_opt *opt, t_mlx *meta);
 int		ft_terminate(t_game *game, int x);
 int		ft_mlx_put_char_in_column_n_at_last_pos(t_mlx *meta, char **mat, char c, int n, char pos);
-int		ft_mlx_pve(t_opt opt, t_mlx *meta);
+int		ft_mlx_game(t_opt opt, t_mlx *meta);
 int		ft_mlx_move(t_mlx *meta, char **mat, int column, int player);
 int		ft_mlx_cpu_move(t_game *game, t_mlx *meta, char **mat, int size, int max_marks);
-int		ft_mlx_pvp(t_opt opt, t_mlx *meta);
+//int		ft_mlx_pvp(t_opt opt, t_mlx *meta);
 
 //LOG-------------------------------------
 t_log	*ft_lognew(char *l, int plr);

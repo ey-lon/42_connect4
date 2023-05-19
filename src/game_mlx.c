@@ -6,7 +6,7 @@
 /*   By: abettini <abettini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 10:26:51 by abettini          #+#    #+#             */
-/*   Updated: 2023/05/18 15:28:42 by abettini         ###   ########.fr       */
+/*   Updated: 2023/05/19 10:13:28 by abettini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -261,7 +261,7 @@ int	ft_print_top(t_game *game)
 	return (0);
 }
 
-int	ft_mlx_pve(t_opt opt, t_mlx *meta)
+int	ft_mlx_game(t_opt opt, t_mlx *meta)
 {
 	t_game	game;
 	int		cpu_start;

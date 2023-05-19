@@ -19,9 +19,11 @@ RM = /bin/rm -f
 
 FLAGS = -Wall -Werror -Wextra -g
 
+MLX_FLAGS = -lm -lX11 -lXext
+
 NAME = connect4
 
-PVP = 0
+GAMEMODE = 0
 
 #paths-----------------------------------------
 
@@ -68,7 +70,7 @@ SRC = $(UTS) $(MAIN) $(CN4)
 OBJ = $(SRC:.c=.o)
 
 %.o: %.c
-	${CC} ${CFLAGS} -D PVP=$(PVP) -c $< -o $@
+	${CC} ${CFLAGS} -D GAMEMODE=$(GAMEMODE) -c $< -o $@
 
 #rules-----------------------------------------
 
@@ -78,7 +80,7 @@ $(NAME): minilibx libcomp $(OBJ)
 		if [ -f $(NAME) ]; then\
 			echo "$(TCOL)$(NAME) $(ALC)";\
 		else\
-			$(CC) $(FLAGS) -D PVP=$(PVP) $(OBJ) $(LIBFT) $(MLX_ARC) -o $(NAME) -lm -lX11 -lXext;\
+			$(CC) $(FLAGS) -D GAMEMODE=$(GAMEMODE) $(OBJ) $(LIBFT) $(MLX_ARC) -o $(NAME) $(MLX_FLAGS);\
 			echo "$(TCOL)$(NAME) $(CMP)";\
 		fi
 
@@ -88,7 +90,7 @@ setpvp:
 pvp: fclean setpvp $(NAME)
 
 # pvp: fclean libcomp
-# 		$(CC) $(FLAGS) -D PVP=1 $(SRC) $(LIBFT) $(MLX_ARC) -o $(NAME) -lm -lX11 -lXext;\
+# 		$(CC) $(FLAGS) -D GAMEMODE=1 $(SRC) $(LIBFT) $(MLX_ARC) -o $(NAME) $(MLX_FLAGS);\
 # 		echo "$(TCOL)$(NAME) $(CMP)";\
 
 pve: re
