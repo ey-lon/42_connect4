@@ -6,7 +6,7 @@
 /*   By: abettini <abettini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 10:26:51 by abettini          #+#    #+#             */
-/*   Updated: 2023/05/19 10:13:28 by abettini         ###   ########.fr       */
+/*   Updated: 2023/05/19 10:29:41 by abettini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static void	ft_mlx_game_init(t_game *game, t_opt *opt, t_mlx *meta, int cpu_stat
 	//ft_printf("GAME ON!\n");
 }
 
-//MOUSE----------------------------------------------------------------------
+//MLX_PVP_mouse---------------------------------------------------------------------------------------
 int	ft_mouse_win_pvp(int key_code, int x, int y, t_game *game)
 {
 	t_mlx *meta = game->meta;
@@ -97,6 +97,7 @@ int	ft_mouse_win_pvp(int key_code, int x, int y, t_game *game)
 	return (0);
 }
 
+//MLX_PVE_mouse---------------------------------------------------------------------------------------
 int	ft_mouse_win_cpu(int key_code, int x, int y, t_game *game)
 {
 	t_mlx *meta = game->meta;
@@ -210,7 +211,7 @@ int	ft_x_terminate(t_game *game)
 
 int	ft_key_hooks(int keycode, t_game *game)
 {
-	if (keycode == B_ESC || (game->status && keycode == 32))
+	if (keycode == B_ESC)
 		ft_terminate(game, 0);
 	return (0);
 }

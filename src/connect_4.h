@@ -6,7 +6,7 @@
 /*   By: abettini <abettini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 10:27:14 by abettini          #+#    #+#             */
-/*   Updated: 2023/05/19 10:13:42 by abettini         ###   ########.fr       */
+/*   Updated: 2023/05/19 10:25:57 by abettini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,7 +119,6 @@ int		ft_mlx_put_char_in_column_n_at_last_pos(t_mlx *meta, char **mat, char c, in
 int		ft_mlx_game(t_opt opt, t_mlx *meta);
 int		ft_mlx_move(t_mlx *meta, char **mat, int column, int player);
 int		ft_mlx_cpu_move(t_game *game, t_mlx *meta, char **mat, int size, int max_marks);
-//int		ft_mlx_pvp(t_opt opt, t_mlx *meta);
 
 //LOG-------------------------------------
 t_log	*ft_lognew(char *l, int plr);
