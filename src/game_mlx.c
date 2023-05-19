@@ -6,7 +6,7 @@
 /*   By: abettini <abettini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 10:26:51 by abettini          #+#    #+#             */
-/*   Updated: 2023/05/19 10:29:41 by abettini         ###   ########.fr       */
+/*   Updated: 2023/05/19 10:38:08 by abettini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -159,9 +159,6 @@ int	ft_mouse_win_cpu(int key_code, int x, int y, t_game *game)
 		game->status = ft_c4_status_update(game, P1);
 		if (!game->status)
 		{
-			// ft_logadd_front(&meta->log, ft_lognew(ft_strdup("It's CPU turn"), '2'));
-			// ft_print_log(game, game->meta, game->meta->log);
-			// ft_printf("%sCPU turn!%s\n", game->opt->p_col[2], NOCOL); fare loop
 			ft_mlx_cpu_move(game, meta, game->mat, opt->grid_width, opt->max_marks);
 			game->status = ft_c4_status_update(game, CPU);
 		}
@@ -262,21 +259,21 @@ int	ft_print_top(t_game *game)
 	return (0);
 }
 
-int	ft_mlx_game(t_opt opt, t_mlx *meta)
+int	ft_mlx_game(t_opt *opt, t_mlx *meta)
 {
 	t_game	game;
 	int		cpu_start;
 
-	if (!opt.gamemode)
+	if (opt->gamemode == PVE)
 	{
 		srand(time(0));
-		ft_mlx_game_init(&game, &opt, meta, 1);
+		ft_mlx_game_init(&game, opt, meta, 1);
 		cpu_start = rand() % 2;
 		if (cpu_start)
 		{
 			ft_logadd_front(&meta->log, ft_lognew(ft_strdup("CPU start!"), '2'));
 			ft_print_log(&game, meta, meta->log);
-			ft_mlx_cpu_move(&game, meta, game.mat, opt.grid_width, opt.max_marks);
+			ft_mlx_cpu_move(&game, meta, game.mat, opt->grid_width, opt->max_marks);
 			game.status = ft_c4_status_update(&game, CPU);
 		}
 		else
@@ -288,7 +285,7 @@ int	ft_mlx_game(t_opt opt, t_mlx *meta)
 	}
 	else
 	{
-		ft_mlx_game_init(&game, &opt, meta, 0);
+		ft_mlx_game_init(&game, opt, meta, 0);
 		ft_logadd_front(&meta->log, ft_lognew(ft_strdup("P1 start!"), '1'));
 		ft_print_log(&game, meta, meta->log);
 		mlx_mouse_hook(meta->win, ft_mouse_win_pvp, &game);
@@ -299,67 +296,6 @@ int	ft_mlx_game(t_opt opt, t_mlx *meta)
 	mlx_loop(meta->mlx);
 	return (0);
 }
-
-//PVP------------------------------------------------------------------------------
-/* int	ft_mlx_pvp(t_opt opt, t_mlx *meta)
-{
-	t_game	game;
-
-	//srand(time(0));
-
-	mlx_hook(meta->win, 17, 0, ft_terminate, &game);
-	mlx_hook(meta->win, 2, 1L << 0, ft_key_hooks, &game);
-	mlx_loop_hook(game.meta->mlx, ft_print_top, &game);
-	mlx_loop(meta->mlx);
-	return (0);
-}
- */
-
-//PVE------------------------------------------------------------------------------
-/* int	ft_mlx_pve(t_opt opt, t_mlx *meta)
-{
-	t_game	game;
-	int		cpu_start;
-
-	srand(time(0));
-	ft_mlx_game_init(&game, &opt, meta, 1);
-	cpu_start = rand() % 2;
-	if (cpu_start)
-	{
-		ft_logadd_front(&meta->log, ft_lognew(ft_strdup("CPU start!"), '2'));
-		ft_print_log(&game, meta, meta->log);
-		ft_mlx_cpu_move(&game, meta, game.mat, opt.grid_width, opt.max_marks);
-		game.status = ft_c4_status_update(&game, CPU);
-	}
-	else
-	{
-		ft_logadd_front(&meta->log, ft_lognew(ft_strdup("You start!"), '1'));
-		ft_print_log(&game, meta, meta->log);
-	}
-	mlx_hook(meta->win, 17, 0, ft_x_terminate, &game);
-	mlx_hook(meta->win, 2, 1L << 0, ft_key_hooks, &game);
-	mlx_mouse_hook(meta->win, ft_mouse_win_cpu, &game);
-	mlx_loop_hook(game.meta->mlx, ft_print_top, &game);
-	mlx_loop(meta->mlx);
-	return (0);
-}
-
-//PVP------------------------------------------------------------------------------
-int	ft_mlx_pvp(t_opt opt, t_mlx *meta)
-{
-	t_game	game;
-
-	//srand(time(0));
-	ft_mlx_game_init(&game, &opt, meta, 0);
-	ft_logadd_front(&meta->log, ft_lognew(ft_strdup("P1 start!"), '1'));
-	ft_print_log(&game, meta, meta->log);
-	mlx_hook(meta->win, 17, 0, ft_x_terminate, &game);
-	mlx_hook(meta->win, 2, 1L << 0, ft_key_hooks, &game);
-	mlx_mouse_hook(meta->win, ft_mouse_win_pvp, &game);
-	mlx_loop_hook(game.meta->mlx, ft_print_top, &game);
-	mlx_loop(meta->mlx);
-	return (0);
-} */
 
 //utils----------------------------------------------------------------------------
 int	ft_mlx_put_char_in_column_n_at_last_pos(t_mlx *meta, char **mat, char c, int n, char pos)

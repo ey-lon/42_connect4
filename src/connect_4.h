@@ -6,7 +6,7 @@
 /*   By: abettini <abettini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 10:27:14 by abettini          #+#    #+#             */
-/*   Updated: 2023/05/19 10:25:57 by abettini         ###   ########.fr       */
+/*   Updated: 2023/05/19 10:33:22 by abettini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,8 +98,8 @@ typedef struct s_game
 }	t_game;
 
 //MAIN------------------------------------
-int		ft_c4_pve(t_opt opt);
-int		ft_c4_pvp(t_opt opt);
+int		ft_c4_pve(t_opt *opt);
+int		ft_c4_pvp(t_opt *opt);
 //movement--------------------------------
 int		ft_c4_move(char **mat, int square, int player);
 //CPU-------------------------------------
@@ -116,7 +116,7 @@ void	ft_c4_print_mat(char **mat, t_opt *opt);
 int 	ft_mlx_start(t_opt *opt, t_mlx *meta);
 int		ft_terminate(t_game *game, int x);
 int		ft_mlx_put_char_in_column_n_at_last_pos(t_mlx *meta, char **mat, char c, int n, char pos);
-int		ft_mlx_game(t_opt opt, t_mlx *meta);
+int		ft_mlx_game(t_opt *opt, t_mlx *meta);
 int		ft_mlx_move(t_mlx *meta, char **mat, int column, int player);
 int		ft_mlx_cpu_move(t_game *game, t_mlx *meta, char **mat, int size, int max_marks);
 
