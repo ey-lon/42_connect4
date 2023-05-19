@@ -34,6 +34,7 @@ int	ft_mouse_win_pvp(int key_code, int x, int y, t_game *game)
 
 	if (!game->menu)
 	{
+		//open menu
 		if ((x > game->meta->width - 192 + 26 && x < game->meta->width - 26) && (y < game->meta->hight - 16 && y > game->meta->hight - 38))
 		{
 			game->menu = 1;
@@ -43,35 +44,36 @@ int	ft_mouse_win_pvp(int key_code, int x, int y, t_game *game)
 	}
 	else
 	{
+		//switch to PVE 
 		if ((x > game->meta->width - 192 + 26 && x < game->meta->width - 26) && (y < game->meta->hight - 143 && y > game->meta->hight - 181))
 		{
-			game->opt->gamemode = 1;
+			game->opt->gamemode = 0;
 			ft_free_mat(game->mat);
 			ft_logclear(&game->meta->log);
-			//mlx_destroy_window(game->meta->mlx, game->meta->win);
 			ft_mlx_start(game->opt, game->meta);
 			return (1);
 		}
+		//REPLAY
 		else if ((x > game->meta->width - 192 + 26 && x < game->meta->width - 26) && (y < game->meta->hight - 98 && y > game->meta->hight - 136))
 		{
 			ft_free_mat(game->mat);
 			ft_logclear(&game->meta->log);
-			//mlx_destroy_window(game->meta->mlx, game->meta->win);
 			ft_mlx_start(game->opt, game->meta);
 			return (1);
 		}
+		//EXIT
 		else if ((x > game->meta->width - 192 + 26 && x < game->meta->width - 26) && (y < game->meta->hight - 52 && y > game->meta->hight - 91))
 		{
 			ft_terminate(game, 0);
 			return (1);
 		}
+		//closes menu
 		else if ((x > game->meta->width - 192 + 26 && x < game->meta->width - 26) && (y < game->meta->hight - 16 && y > game->meta->hight - 38))
 		{
 			game->menu = 0;
 			ft_print_log(game, game->meta, game->meta->log);
 			return (1);
 		}
-		// return (1);
 	}
 	game->menu = 0;
 	if (!game->status && key_code == 1)
@@ -102,6 +104,7 @@ int	ft_mouse_win_cpu(int key_code, int x, int y, t_game *game)
 	
 	if (!game->menu)
 	{
+		//open menu
 		if ((x > game->meta->width - 192 + 26 && x < game->meta->width - 26) && (y < game->meta->hight - 16 && y > game->meta->hight - 38))
 		{
 			game->menu = 1;
@@ -111,35 +114,36 @@ int	ft_mouse_win_cpu(int key_code, int x, int y, t_game *game)
 	}
 	else
 	{
+		//switch to PVP
 		if ((x > game->meta->width - 192 + 26 && x < game->meta->width - 26) && (y < game->meta->hight - 143 && y > game->meta->hight - 181))
 		{
 			game->opt->gamemode = 1;
 			ft_free_mat(game->mat);
 			ft_logclear(&game->meta->log);
-			//mlx_destroy_window(game->meta->mlx, game->meta->win);
 			ft_mlx_start(game->opt, game->meta);
 			return (1);
 		}
+		//REPLAY
 		else if ((x > game->meta->width - 192 + 26 && x < game->meta->width - 26) && (y < game->meta->hight - 98 && y > game->meta->hight - 136))
 		{
 			ft_free_mat(game->mat);
 			ft_logclear(&game->meta->log);
-			//mlx_destroy_window(game->meta->mlx, game->meta->win);
 			ft_mlx_start(game->opt, game->meta);
 			return (1);
 		}
+		//EXIT
 		else if ((x > game->meta->width - 192 + 26 && x < game->meta->width - 26) && (y < game->meta->hight - 52 && y > game->meta->hight - 91))
 		{
 			ft_terminate(game, 0);
 			return (1);
 		}
+		//closes menu
 		else if ((x > game->meta->width - 192 + 26 && x < game->meta->width - 26) && (y < game->meta->hight - 16 && y > game->meta->hight - 38))
 		{
 			game->menu = 0;
 			ft_print_log(game, game->meta, game->meta->log);
 			return (1);
 		}
-		//return (1);
 	}
 	game->menu = 0;
 	if (!game->status && key_code == 1)
