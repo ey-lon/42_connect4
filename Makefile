@@ -85,7 +85,7 @@ $(NAME): minilibx libcomp $(OBJ)
 		fi
 
 setpvp:
-	$(eval PVP := 1)
+	$(eval GAMEMODE := 1)
 
 pvp: fclean setpvp $(NAME)
 
