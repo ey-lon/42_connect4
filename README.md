@@ -13,9 +13,9 @@ You can play against the CPU or against another player in shared screen.
 | `make` | compile *connect4* |
 | `make clean` | remove tmp files |
 | `make fclean` | remove tmp files and executable |
+| `make re` | force recompile |
 | `make pvp` | compile *connect4* with default mode PVP (necessary for noob graphics) |
 | `make pve` | compile *connect4* with default mode PVE |
-| `make re` | force recompile |
 
 # HOW TO LAUNCH:
 
