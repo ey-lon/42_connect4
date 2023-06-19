@@ -1,6 +1,6 @@
 # 42_connect4
 
-### ABOUT THE PROJECT:
+# ABOUT THE PROJECT:
 This is the classic game of *connect 4* coded in C for a challenge at 42 Luiss Firenze.
 
 # HOW TO USE:
