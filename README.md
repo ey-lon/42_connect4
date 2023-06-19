@@ -13,7 +13,7 @@ This is the classic game of *connect 4* coded in C for a challenge at 42 Luiss F
 
 # HOW TO LAUNCH:
 
-`./terminal_minigames <n_of_columns> <n_of_rows> <graphics>`
+`./connect4 <n_of_columns> <n_of_rows> <graphics>`
 
 # GRAPHICS:
 | name | description |
