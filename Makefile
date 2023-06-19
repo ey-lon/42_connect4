@@ -31,6 +31,7 @@ LIBFT_F = Libft/
 MAIN_F = main/
 UTS_F = utils/
 CN4_F = src/
+OBJ_F = obj/
 MLX_PATH = minilibx
 MLX_ARC = minilibx/libmlx_Linux.a
 
@@ -65,7 +66,7 @@ LIBFT := $(addprefix $(LIBFT_F),$(LIBFT))
 UTS := $(addprefix $(UTS_F),$(UTS))
 CN4 := $(addprefix $(CN4_F),$(CN4))
 
-SRC = $(UTS) $(MAIN) $(CN4)
+SRC = $(UTS) $(CN4)
 
 OBJ = $(SRC:.c=.o)
 
@@ -76,7 +77,7 @@ OBJ = $(SRC:.c=.o)
 
 all: $(NAME)
 
-$(NAME): minilibx libcomp $(OBJ)
+$(NAME): minilibx libcomp objects $(OBJ)
 		if [ -f $(NAME) ]; then\
 			echo "$(TCOL)$(NAME) $(ALC)";\
 		else\
@@ -88,10 +89,6 @@ setpvp:
 	$(eval GAMEMODE := 1)
 
 pvp: fclean setpvp $(NAME)
-
-# pvp: fclean libcomp
-# 		$(CC) $(FLAGS) -D GAMEMODE=1 $(SRC) $(LIBFT) $(MLX_ARC) -o $(NAME) $(MLX_FLAGS);\
-# 		echo "$(TCOL)$(NAME) $(CMP)";\
 
 pve: re
 
@@ -116,7 +113,6 @@ fclean:   	libfclean clean
 minilibx:
 	@make -sC $(MLX_PATH)
 	@cp $(MLX_PATH)/mlx.h $(CN4_F)/mlx.h
-
 
 re: fclean all
 
