@@ -11,10 +11,12 @@ This is the classic game of *connect 4* coded in C for a challenge at 42 Luiss F
 | `make fclean` | remove tmp files and executable |
 | `make re` | force recompile |
 
+# HOW TO LAUNCH:
+
 `./terminal_minigames <n_of_columns> <n_of_rows> <graphics>`
 
-# GRAPHICS
+# GRAPHICS:
 | name | description |
 | ---- | ----------- |
 | noob | to play on the command line |
-| mlx | to play on a new window |
+| mlx | to play on a new window with fancy graphics |
