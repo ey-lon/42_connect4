@@ -19,7 +19,9 @@ You can play against the CPU or against another player in shared screen.
 
 # HOW TO LAUNCH:
 
-`./connect4 <n_of_columns> <n_of_rows> <graphics>`
+```shell
+./connect4 <n_of_columns> <n_of_rows> <graphics>`
+```
 
 # GRAPHICS:
 | name | description |
