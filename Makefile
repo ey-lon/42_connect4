@@ -15,7 +15,7 @@ ALC = $(YELL)already compiled$(NOCOL)
 
 CC = cc
 
-RM = /bin/rm -f
+RM = /bin/rm -rf
 
 FLAGS = -Wall -Werror -Wextra -g
 
@@ -71,19 +71,16 @@ SRC = $(UTS) $(CN4)
 OBJ = $(SRC:.c=.o)
 
 %.o: %.c
+	mkdir -p $(OBJ_F)
 	${CC} ${CFLAGS} -D GAMEMODE=$(GAMEMODE) -c $< -o $@
 
 #rules-----------------------------------------
 
 all: $(NAME)
 
-$(NAME): minilibx libcomp objects $(OBJ)
-		if [ -f $(NAME) ]; then\
-			echo "$(TCOL)$(NAME) $(ALC)";\
-		else\
-			$(CC) $(FLAGS) -D GAMEMODE=$(GAMEMODE) $(OBJ) $(LIBFT) $(MLX_ARC) -o $(NAME) $(MLX_FLAGS);\
-			echo "$(TCOL)$(NAME) $(CMP)";\
-		fi
+$(NAME): minilibx libcomp $(OBJ)
+		$(CC) $(FLAGS) -D GAMEMODE=$(GAMEMODE) $(OBJ) $(LIBFT) $(MLX_ARC) -o $(NAME) $(MLX_FLAGS)
+		echo "$(TCOL)$(NAME) $(CMP)"
 
 setpvp:
 	$(eval GAMEMODE := 1)
@@ -92,17 +89,9 @@ pvp: fclean setpvp $(NAME)
 
 pve: re
 
-libcomp:
-		@make -C $(LIBFT_F)
-
-libclean:
-		@make clean -C $(LIBFT_F)
-
 clean:		libclean
 		$(RM) $(OBJ)
-
-libfclean:
-		@make fclean -C $(LIBFT_F)
+		$(RM) $(OBJ_F)
 
 fclean:   	libfclean clean
 		if [ -f $(NAME) ]; then\
@@ -110,12 +99,21 @@ fclean:   	libfclean clean
 			echo "$(TCOL)$(NAME) $(RMD)";\
 		fi
 
+libcomp:
+		@make -C $(LIBFT_F)
+
+libclean:
+		@make clean -C $(LIBFT_F)
+
+libfclean:
+		@make fclean -C $(LIBFT_F)
+
 minilibx:
 	@make -sC $(MLX_PATH)
 	@cp $(MLX_PATH)/mlx.h $(CN4_F)/mlx.h
 
 re: fclean all
 
-.PHONY: $(NAME) all re clean fclean setpvp pvp pve minilibx
+.PHONY: $(NAME) all re clean fclean setpvp pvp pve libcomp libclean libfclean minilibx
 
 .SILENT:
