@@ -114,6 +114,6 @@ minilibx:
 
 re: fclean all
 
-.PHONY: $(NAME) all re clean fclean setpvp pvp pve libcomp libclean libfclean minilibx
+.PHONY: all re clean fclean setpvp pvp pve libcomp libclean libfclean minilibx
 
 .SILENT:
